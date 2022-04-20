@@ -1,0 +1,30 @@
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T07:16:15.202Z"}
+{"level":"error","message":" <main> connection lost:","stack":"","timestamp":"2022-04-20T07:16:45.213Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T07:17:42.174Z"}
+{"level":"error","message":" <main> connection lost:","stack":"","timestamp":"2022-04-20T07:18:12.186Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T07:20:20.070Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T07:20:20.384Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T19:31:40.735Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T19:31:41.184Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T20:25:43.229Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T20:25:43.514Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:17:40.597Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:17:40.633Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:20:29.514Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:20:29.544Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:35:25.937Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:35:25.970Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:38:07.578Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:38:07.611Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:40:33.471Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:40:33.504Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:41:31.036Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:41:31.070Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:41:37.076Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:41:37.120Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:42:28.205Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:42:28.245Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:43:38.168Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:43:38.201Z"}
+{"level":"info","message":"Connecting to <main>","timestamp":"2022-04-20T21:43:40.985Z"}
+{"level":"info","message":"<main> Connected","timestamp":"2022-04-20T21:43:41.020Z"}

@@ -1,0 +1,24 @@
+
+default:
+  databases:
+    main:
+      dialect: "mongodb"
+      host: "mongodb://db"
+      port: '${DB_PORT}'
+      dbName: "test"
+      user: "root"
+      password: "pass12345"
+# {
+#   "default":{
+#     "databases":{
+#       "main":{
+#         "dialect": "mongodb",
+#         "host": "mongodb://db",
+#        "port": "${DB_PORT}",
+#         "dbName":"test",
+#         "user": "root",
+#         "password": "pass12345"
+#       }
+#     }
+#   }
+# }

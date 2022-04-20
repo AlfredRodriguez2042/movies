@@ -1,0 +1,59 @@
+version: '3.9'
+services:
+  db:
+    ports:
+      - '${DB_PORT:-27017}'
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    command: npm run dev
+    ports:
+      - 4000:4000
+    volumes:
+      - ./server:/home/node/app
+    environment:
+      BACKEND_PORT: ${BACKEND_PORT}
+      NODE_ENV: development
+      DB_PORT: ${DB_PORT}
+
+  client:
+    image: react
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/home/node/app
+      - /app/node_modules
+    environment:
+      BACKEND_HOST: server
+      REACT_APP_BACKEND_PORT: ${BACKEND_PORT}
+    links:
+      - 'server'
+    depends_on:
+      - server
+      
+  mongoclient:
+    image: mongoclient/mongoclient
+    container_name: mongoclient
+    depends_on:
+      - db
+    ports:
+      - 3080:3000
+  # nginx:
+  #   image: nginx:stable-alpine
+  #   container_name: nginx
+  #   ports:
+  #     - 5500:80
+    
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - server
+  #     - client
+
+

@@ -1,0 +1,106 @@
+version: '3.9'
+services:
+  db:
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      # POSTGRES_HOST_AUTH_METHOD: 'trust' no secure in production
+
+  storage:
+    command: 'redis-server --appendonly yes --requirepass ${REDIS_SECRET}'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    command: node dist/index.js
+    environment:
+      BACKEND_PORT: ${BACKEND_PORT}
+      DB_HOST: db
+     
+
+  nginx:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - 80:80
+    networks:
+      - backend
+    depends_on:
+      - server
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  # nginx-proxy:
+  #   image: jwilder/nginx-proxy
+  #   restart: always
+  #   ports:
+  #     - '80:80'
+  #     - '443:443'
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #     - certs:/etc/nginx/certs:ro
+  #     - vhostd:/etc/nginx/vhost.d
+  #     - html:/usr/share/nginx/html
+  #   labels:
+  #     - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+
+  # letsencrypt:
+  #   image: jrcs/letsencrypt-nginx-proxy-companion
+  #   restart: always
+  #   environment:
+  #     NGINX_PROXY_CONTAINER: nginx-proxy
+  #   volumes:
+  #     - certs:/etc/nginx/certs:rw
+  #     - vhostd:/etc/nginx/vhost.d
+  #     - html:/usr/share/nginx/html
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # nginx:
+  #   image: nginx
+  #   expose:
+  #     - '80'
+  #   volumes:
+  #     - ~/Desktop/Docker/wwww:/usr/share/nginx/html:ro
+  #   environment:
+  #     VIRTUAL_HOST: ${VIRTUAL_HOST}
+  #     LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
+  #     LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+  #   depends_on:
+  #     - nginx-proxy
+  #     - letsencrypt
+
+  # netdata:
+  #   image: netdata/netdata
+  #   hostname: kuro.com # set to fqdn of host
+  #   ports:
+  #     - 19999:19999
+  #   cap_add:
+  #     - SYS_PTRACE
+  #   security_opt:
+  #     - apparmor:unconfined
+  #   volumes:
+  #     - /etc/passwd:/host/etc/passwd:ro
+  #     - /etc/group:/host/etc/group:ro
+  #     - /proc:/host/proc:ro # ro is Read Only
+  #     - /sys:/host/sys:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   #   - netdata-etc:/etc/netdata
+  #   depends_on:
+  #     - servernode
+
+
+# volumes:
+#   certs:
+#   html:
+#   vhostd:
