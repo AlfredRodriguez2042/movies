@@ -19,11 +19,13 @@ client/.env.local
 .env.production.local
 
 client/npm-debug.log*
-clinet/yarn-debug.log*
+client/yarn-debug.log*
 client/yarn-error.log*
 
 
 server/.env
+server/logs/
+server/uploads
 
 client/notas.txt
 .env

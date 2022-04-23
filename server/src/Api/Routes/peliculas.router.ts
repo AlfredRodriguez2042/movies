@@ -5,6 +5,19 @@ import Multer from '../Utils/Multer'
 const route: Router = Router()
 
 /**
+ * Get HealtCheck
+ * @route GET /peliculas/healtcheck
+ * @operationId check
+ * @returns {string} 200 - status ok
+ * @returns {Error.model} 500 - Unexpected error
+ */
+
+route.get('/healtcheck', (_req:any,res:any)=>{
+res.status(200).json({
+    status:"OK"
+})
+})
+/**
  * Get Peliculas
  * @group Peliculas - Peliculas entity operations
  * @route GET /peliculas
@@ -17,16 +30,11 @@ const route: Router = Router()
  * @returns {Error.model} 500 - Unexpected error
  */
 
-route.get('/healtcheck', (_req:any,res:any)=>{
-res.status(200).json({
-    status:"OK"
-})
-})
 route.get('/', controller.findAll)
 /**
  * Get Peliculas
  * @group Peliculas - Peliculas entity operations
- * @route GET /peliculas
+ * @route GET /peliculas/all
  * @operationId find
  * @produces application/json
  * @returns {Array.<Peliculas>} 200 - An array of Peliculas
@@ -49,7 +57,7 @@ route.post('/',Multer.single('file'), controller.create)
 /**
  * Put Peliculas
  * @group Peliculas - Peliculas entity operations
- * @route Put /peliculas
+ * @route Put /peliculas/:id
  * @operationId update
  * @produces application/json
  * @returns {Array.<Peliculas>} 200 - An array of Peliculas
@@ -61,7 +69,7 @@ route.put('/:id', controller.update)
 /**
  * Delete Peliculas
  * @group Peliculas - Peliculas entity operations
- * @route DELETE /peliculas
+ * @route DELETE /peliculas/:id
  * @operationId deletePeliculas
  * @produces application/json
  * @returns {Peliculas} 200 - An array of Articles
