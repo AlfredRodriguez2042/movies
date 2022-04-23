@@ -1,8 +1,10 @@
 import express, { Application, json, urlencoded } from 'express'
 import compression from 'compression'
 import helmet from 'helmet'
-import { route } from '@Routes/index'
+import route from '@Routes/index'
 import cookieParser from 'cookie-parser'
+//import fielUpload from 'express-fileupload'
+import cors  from 'cors'
 //import * as expressSwagger from 'express-swagger-generator'
 export class Server {
   private app: Application
@@ -17,7 +19,8 @@ export class Server {
   }
 
   private async routes() {
-    route(this.app)
+    this.app.use('/api',route)
+
   }
   private async middlewares() {
     this.app.enable('trust proxy')
@@ -29,11 +32,10 @@ export class Server {
       })
     )
     this.app.use(urlencoded({ extended: true }))
+   // this.app.use(fielUpload())
     this.app.use(json())
+    this.app.use(cors())
     this.app.use(cookieParser())
-    if (process.env.NODE_ENV !== 'development') {
-      // this.app.use(this.path, AuthMiddleware)
-    }
   }
   private buildApiDocs() {
     this.swaggerObject({
